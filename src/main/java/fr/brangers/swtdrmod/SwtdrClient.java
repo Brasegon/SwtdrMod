@@ -2,7 +2,7 @@ package fr.brangers.swtdrmod;
 
 import java.io.File;
 
-import fr.brangers.swtdrmod.event.ClientEvent;
+import fr.brangers.swtdrmod.event.gui.GuiEvent;
 import net.minecraftforge.common.MinecraftForge;
 
 public class SwtdrClient extends SwtdrCommon
@@ -20,6 +20,6 @@ public class SwtdrClient extends SwtdrCommon
 	    {
 	        // TODO Auto-generated method stub
 	        super.init();
-	        MinecraftForge.EVENT_BUS.register(new ClientEvent());
+	        MinecraftForge.EVENT_BUS.register(new GuiEvent());
 	    }
 }
