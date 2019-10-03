@@ -13,25 +13,38 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 
 public class SwtdrBlocks {
-	public static BlockBase oreCopper = new BlockBase(Material.CACTUS, "ore_copper").setCreativeTab(CreativeTabs.MATERIALS);
-	public static BlockFurnace TEST = new BlockFurnace(Material.CACTUS, "furnacator");
+	//public static BlockFurnace TEST = new BlockFurnace(Material.CACTUS, "furnacator");
+	
+	public static BlockBase DURACIER_ORE = new BlockBase(Material.IRON, "duracierOre");
+	public static BlockBase DURACIER_BLOCK = new BlockBase(Material.IRON, "duracierBlock");
+	public static BlockBase PLASTACIER_BLOCK = new BlockBase(Material.IRON, "plastacierBlock");
+	
 	public static void register(IForgeRegistry<Block> registry) {
 		registry.registerAll(
-				oreCopper,
-				TEST
+				DURACIER_ORE,
+				DURACIER_BLOCK,
+				PLASTACIER_BLOCK
+//				oreCopper,
+//				TEST
 		);
-		GameRegistry.registerTileEntity(TileCustomFurnace.class, TEST.getRegistryName().toString());
+//		GameRegistry.registerTileEntity(TileCustomFurnace.class, TEST.getRegistryName().toString());
 	}
 	
 	public static void registerItemBlocks(IForgeRegistry<Item> registry) {
 		registry.registerAll(
-				oreCopper.createItemBlock(),
-				TEST.createItemBlock()
+//				oreCopper.createItemBlock(),
+//				TEST.createItemBlock()
+				DURACIER_ORE.createItemBlock(),
+				DURACIER_BLOCK.createItemBlock(),
+				PLASTACIER_BLOCK.createItemBlock()
 		);
 	}
 	
 	public static void registerModels() {
-		oreCopper.registerItemModel(Item.getItemFromBlock(oreCopper));
-		TEST.registerItemModel(Item.getItemFromBlock(TEST));
+//		oreCopper.registerItemModel(Item.getItemFromBlock(oreCopper));
+//		TEST.registerItemModel(Item.getItemFromBlock(TEST));
+		DURACIER_ORE.registerItemModel(Item.getItemFromBlock(DURACIER_ORE));
+		DURACIER_BLOCK.registerItemModel(Item.getItemFromBlock(DURACIER_BLOCK));
+		PLASTACIER_BLOCK.registerItemModel(Item.getItemFromBlock(PLASTACIER_BLOCK));
 	}
 }
