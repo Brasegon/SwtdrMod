@@ -1,6 +1,9 @@
 package fr.brangers.swtdrmod.event.gui;
 
 import fr.brangers.swtdrmod.blocks.tileEntity.TileCustomFurnace;
+import fr.brangers.swtdrmod.blocks.tileEntity.TileEntityForge;
+import fr.brangers.swtdrmod.container.ContainerForge;
+import fr.brangers.swtdrmod.gui.GuiForge;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.tileentity.TileEntity;
@@ -14,7 +17,7 @@ public class GuiHandler implements IGuiHandler{
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
     	switch (ID) {
 		case PEDESTAL:
-			return new TestContainer(player.inventory, (TileCustomFurnace)world.getTileEntity(new BlockPos(x, y, z)));
+			return new ContainerForge(player.inventory, (TileEntityForge)world.getTileEntity(new BlockPos(x, y, z)));
 		default:
 			return null;
     	}
@@ -24,7 +27,7 @@ public class GuiHandler implements IGuiHandler{
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
     	switch (ID) {
 		case PEDESTAL:
-			return new GuiTest(player.inventory, (TileCustomFurnace)world.getTileEntity(new BlockPos(x, y, z)));
+			return new GuiForge(player.inventory, (TileEntityForge)world.getTileEntity(new BlockPos(x, y, z)));
 		default:
 			return null;
     	}

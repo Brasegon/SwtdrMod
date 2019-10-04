@@ -2,6 +2,7 @@ package fr.brangers.swtdrmod.blocks;
 
 
 import fr.brangers.swtdrmod.blocks.tileEntity.TileCustomFurnace;
+import fr.brangers.swtdrmod.blocks.tileEntity.TileEntityForge;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -27,7 +28,7 @@ public class SwtdrBlocks {
 //				oreCopper,
 				TEST
 		);
-//		GameRegistry.registerTileEntity(TileCustomFurnace.class, TEST.getRegistryName().toString());
+		GameRegistry.registerTileEntity(TileEntityForge.class, TEST.getRegistryName().toString());
 	}
 	
 	public static void registerItemBlocks(IForgeRegistry<Item> registry) {
