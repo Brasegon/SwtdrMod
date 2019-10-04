@@ -18,7 +18,7 @@ public class GuiTest extends GuiContainer {
 
     public GuiTest(InventoryPlayer playerInv, IInventory furnaceInv)
     {
-        super(new ContainerFurnace(playerInv, furnaceInv));
+        super(new TestContainer(playerInv, furnaceInv));
         this.playerInventory = playerInv;
         this.tileFurnace = furnaceInv;
     }

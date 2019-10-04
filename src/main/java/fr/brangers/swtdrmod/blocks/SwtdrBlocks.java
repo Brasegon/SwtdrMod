@@ -13,7 +13,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 
 public class SwtdrBlocks {
-	//public static BlockFurnace TEST = new BlockFurnace(Material.CACTUS, "furnacator");
+	public static BlockFurnace TEST = new BlockFurnace(Material.CACTUS, "furnacator");
 	
 	public static BlockBase DURACIER_ORE = new BlockBase(Material.IRON, "duracierOre");
 	public static BlockBase DURACIER_BLOCK = new BlockBase(Material.IRON, "duracierBlock");
@@ -23,9 +23,9 @@ public class SwtdrBlocks {
 		registry.registerAll(
 				DURACIER_ORE,
 				DURACIER_BLOCK,
-				PLASTACIER_BLOCK
+				PLASTACIER_BLOCK,
 //				oreCopper,
-//				TEST
+				TEST
 		);
 //		GameRegistry.registerTileEntity(TileCustomFurnace.class, TEST.getRegistryName().toString());
 	}
@@ -33,7 +33,7 @@ public class SwtdrBlocks {
 	public static void registerItemBlocks(IForgeRegistry<Item> registry) {
 		registry.registerAll(
 //				oreCopper.createItemBlock(),
-//				TEST.createItemBlock()
+				TEST.createItemBlock(),
 				DURACIER_ORE.createItemBlock(),
 				DURACIER_BLOCK.createItemBlock(),
 				PLASTACIER_BLOCK.createItemBlock()
@@ -42,7 +42,7 @@ public class SwtdrBlocks {
 	
 	public static void registerModels() {
 //		oreCopper.registerItemModel(Item.getItemFromBlock(oreCopper));
-//		TEST.registerItemModel(Item.getItemFromBlock(TEST));
+		TEST.registerItemModel(Item.getItemFromBlock(TEST));
 		DURACIER_ORE.registerItemModel(Item.getItemFromBlock(DURACIER_ORE));
 		DURACIER_BLOCK.registerItemModel(Item.getItemFromBlock(DURACIER_BLOCK));
 		PLASTACIER_BLOCK.registerItemModel(Item.getItemFromBlock(PLASTACIER_BLOCK));

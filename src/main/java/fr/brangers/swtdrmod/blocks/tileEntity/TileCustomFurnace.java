@@ -1,6 +1,7 @@
 package fr.brangers.swtdrmod.blocks.tileEntity;
 
 import fr.brangers.swtdrmod.blocks.BlockFurnace;
+import fr.brangers.swtdrmod.event.gui.TestContainer;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -543,7 +544,7 @@ public class TileCustomFurnace extends TileEntityLockable implements ITickable, 
 
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
     {
-        return new ContainerFurnace(playerInventory, this);
+        return new TestContainer(playerInventory, this);
     }
 
     public int getField(int id)
