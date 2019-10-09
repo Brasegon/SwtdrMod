@@ -12,6 +12,7 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.SlotFurnaceFuel;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
@@ -27,6 +28,7 @@ public class TileEntityForge extends TileEntityLockable implements ITickable, IS
 	private NonNullList<ItemStack> forgeItemStacks = NonNullList.<ItemStack>withSize(3, ItemStack.EMPTY);
 	private int totalTimeForged;
 	private int timeForged;
+	public static boolean openButton = false;
 	@Override
 	public int getSizeInventory() {
 		// TODO Auto-generated method stub
@@ -212,11 +214,72 @@ public class TileEntityForge extends TileEntityLockable implements ITickable, IS
 		// TODO Auto-generated method stub
 		return false;
 	}
+	private boolean canForge()
+    {
+		
+        if (((ItemStack)this.forgeItemStacks.get(0)).isEmpty())
+        {
+            return false;
+        }
+        else
+        {
+            ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.forgeItemStacks.get(0));
 
+            if (itemstack.isEmpty())
+            {
+                return false;
+            }
+            else
+            {
+                ItemStack itemstack1 = this.forgeItemStacks.get(2);
+
+                if (itemstack1.isEmpty())
+                {
+                    return true;
+                }
+                else if (!itemstack1.isItemEqual(itemstack))
+                {
+                    return false;
+                }
+                else if (itemstack1.getCount() + itemstack.getCount() <= this.getInventoryStackLimit() && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize())  // Forge fix: make furnace respect stack sizes in furnace recipes
+                {
+                    return true;
+                }
+                else
+                {
+                    return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize(); // Forge fix: make furnace respect stack sizes in furnace recipes
+                }
+            }
+        }
+    }
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
+		if (!this.world.isRemote) {
+			if (!this.forgeItemStacks.get(0).isEmpty()) {
+				this.openButton = true;
+			}
+			else {
+				this.openButton = false;
+			}
+			if (canForge()) {
+				ItemStack itemstack = this.forgeItemStacks.get(0);
+				ItemStack itemstack1 = FurnaceRecipes.instance().getSmeltingResult(itemstack);
+				ItemStack itemstack2 = this.forgeItemStacks.get(2);
+				
+				if (itemstack2.isEmpty())
+	            {
+	                this.forgeItemStacks.set(2, itemstack1.copy());
+	            }
+				else {
+					if (itemstack2.getItem() == itemstack1.getItem())
+		            {
+		                itemstack2.grow(itemstack1.getCount());
+		            }
+				}
+				itemstack.shrink(1);
+				}
+		}
 	}
 
 }

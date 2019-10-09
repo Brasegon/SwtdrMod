@@ -279,6 +279,8 @@ public class GuiCustomMainMenu extends GuiScreen {
         this.buttonList.add(new GuiButton(20, this.width / 2 - 49 - 102, p_73969_1_ + 100, 98, 20, "Rejoindre SWTDR"));
         if (debugDev == true) {
         	this.buttonList.add(new GuiButton(1, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 1, I18n.format("menu.singleplayer")));
+        	this.buttonList.add(new GuiButton(2, this.width / 2 - 100, p_73969_1_ + p_73969_2_ + 100, I18n.format("menu.multiplayer")));
+        	
         }
         //this.realmsButton = this.addButton(new GuiButton(14, this.width / 2 + 2, p_73969_1_ + p_73969_2_ * 2, 98, 20, I18n.format("menu.online").replace("Minecraft", "").trim()));
         //this.buttonList.add(modButton = new GuiButton(6, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 2, 98, 20, I18n.format("fml.menu.mods")));
