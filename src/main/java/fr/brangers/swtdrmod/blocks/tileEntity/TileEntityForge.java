@@ -29,6 +29,7 @@ public class TileEntityForge extends TileEntityLockable implements ITickable, IS
 	private int totalTimeForged;
 	private int timeForged;
 	public static boolean openButton = false;
+	public static boolean canSendForge = false;
 	@Override
 	public int getSizeInventory() {
 		// TODO Auto-generated method stub
@@ -214,7 +215,7 @@ public class TileEntityForge extends TileEntityLockable implements ITickable, IS
 		// TODO Auto-generated method stub
 		return false;
 	}
-	private boolean canForge()
+	public boolean canForge()
     {
 		
         if (((ItemStack)this.forgeItemStacks.get(0)).isEmpty())
@@ -227,6 +228,7 @@ public class TileEntityForge extends TileEntityLockable implements ITickable, IS
 
             if (itemstack.isEmpty())
             {
+            	this.openButton = false;
                 return false;
             }
             else
@@ -239,6 +241,7 @@ public class TileEntityForge extends TileEntityLockable implements ITickable, IS
                 }
                 else if (!itemstack1.isItemEqual(itemstack))
                 {
+                	this.openButton = false;
                     return false;
                 }
                 else if (itemstack1.getCount() + itemstack.getCount() <= this.getInventoryStackLimit() && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize())  // Forge fix: make furnace respect stack sizes in furnace recipes
@@ -247,6 +250,9 @@ public class TileEntityForge extends TileEntityLockable implements ITickable, IS
                 }
                 else
                 {
+                	if (!(itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize())) {
+                		this.openButton = false;
+                	}
                     return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize(); // Forge fix: make furnace respect stack sizes in furnace recipes
                 }
             }
@@ -256,13 +262,8 @@ public class TileEntityForge extends TileEntityLockable implements ITickable, IS
 	public void update() {
 		// TODO Auto-generated method stub
 		if (!this.world.isRemote) {
-			if (!this.forgeItemStacks.get(0).isEmpty()) {
-				this.openButton = true;
-			}
-			else {
-				this.openButton = false;
-			}
-			if (canForge()) {
+			this.canSendForge = canForge();
+			if (canForge() && this.openButton) {
 				ItemStack itemstack = this.forgeItemStacks.get(0);
 				ItemStack itemstack1 = FurnaceRecipes.instance().getSmeltingResult(itemstack);
 				ItemStack itemstack2 = this.forgeItemStacks.get(2);
@@ -278,6 +279,7 @@ public class TileEntityForge extends TileEntityLockable implements ITickable, IS
 		            }
 				}
 				itemstack.shrink(1);
+				this.openButton = false;
 				}
 		}
 	}

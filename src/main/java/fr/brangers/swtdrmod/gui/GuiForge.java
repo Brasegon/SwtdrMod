@@ -49,7 +49,7 @@ public class GuiForge extends GuiContainer{
     {
         if (button.id == 0)
         {
-        	SwtdrCommon.network.sendToServer(new MyMessage("Salut"));
+        	SwtdrCommon.network.sendToServer(new MyMessage(10));
         }
     }
     public void drawScreen(int mouseX, int mouseY, float partialTicks)

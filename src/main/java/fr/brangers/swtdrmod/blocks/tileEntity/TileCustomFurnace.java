@@ -286,7 +286,7 @@ public class TileCustomFurnace extends TileEntityLockable implements ITickable, 
     {
         if (((ItemStack)this.furnaceItemStacks.get(0)).isEmpty())
         {
-            return false;
+            return true;
         }
         else
         {
@@ -294,7 +294,7 @@ public class TileCustomFurnace extends TileEntityLockable implements ITickable, 
 
             if (itemstack.isEmpty())
             {
-                return false;
+                return true;
             }
             else
             {
